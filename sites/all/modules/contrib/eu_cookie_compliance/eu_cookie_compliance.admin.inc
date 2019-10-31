@@ -344,6 +344,7 @@ function eu_cookie_compliance_admin_form(array $form, array $form_state) {
     ),
   );
 
+  /*
   $form['popup_message']['eu_cookie_compliance']['popup_agree_button_message'] = array(
     '#type' => 'textfield',
     '#title' => t('Agree button label'),
@@ -355,6 +356,22 @@ function eu_cookie_compliance_admin_form(array $form, array $form_state) {
       ),
     ),
     '#required' => TRUE,
+  );
+  */
+
+  $form['popup_message']['eu_cookie_compliance']['popup_agree_button_message'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Agree button label'),
+    '#default_value' => isset($popup_settings['popup_agree_button_message']) ? $popup_settings['popup_agree_button_message'] : t('OK, I agree'),
+    '#size' => 30,
+    '#states' => array(
+      'visible' => array(
+        'input[name="eu_cookie_compliance[enable_save_preferences_button]"]' => array('!value' => 'default'),
+      ),
+      'required' => array(
+        'input[name="eu_cookie_compliance[method]"]' => array('!value' => 'default'),
+      ),
+    ),
   );
 
   $form['popup_message']['eu_cookie_compliance']['show_disagree_button'] = array(
